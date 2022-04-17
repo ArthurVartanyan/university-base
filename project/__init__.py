@@ -3,6 +3,8 @@ from tkinter.ttk import Combobox
 
 from tkcalendar import DateEntry
 
+from project import db_connection
+
 window = Tk()
 window.title("ВГУ - электронная учетная книжка")
 window.geometry("900x600")
@@ -66,7 +68,9 @@ stud_num_label = Label(window, text="Номер билета:", font="Arial 13")
 stud_num_label.place(x=225, y=357)
 stud_num_label.configure(background='#cee8f5')
 
-addButton = Button(window, text="Добавить!")
+addButton = Button(window, text="Добавить!", command=lambda: db_connection
+                   .add_student(name.get(), last_name.get(), patronymic.get(), pass_serial.get(),
+                                pass_num.get(), "1", stud_num.get()))
 addButton.place(relx=.4, rely=.70, width=140)
 
 window.mainloop()
